@@ -18,11 +18,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - working-directory: vite-project
+      - name: Install dependencies
         run: npm install
-      - working-directory: vite-project
+        working-directory: vite-project
+      - name: Build
         run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+        working-directory: vite-project
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./vite-project/dist
 
